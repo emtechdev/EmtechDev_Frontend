@@ -30,7 +30,7 @@ const Slider = () => {
             >
                 <SwiperSlide className="relative">
                     <img
-                        className="object-fill  rounded-lg h-auto max-h-[500px] w-full"
+                        className="object-fill  rounded h-auto max-h-[500px] w-full"
                         src="http://127.0.0.1:8888/static/assets/images/hero-1.jpg"
                         alt="Slide 1"
                     />
@@ -47,7 +47,7 @@ const Slider = () => {
 
 
                     <img
-                        className="object-fill  rounded-lg h-auto max-h-[500px] w-full"
+                        className="object-fill  rounded h-auto max-h-[500px] w-full"
                         src="http://127.0.0.1:8888/static/assets/images/hero-2.jpg"
                         alt="Slide 2"
                     />
@@ -61,7 +61,7 @@ const Slider = () => {
                 </SwiperSlide>
                 <SwiperSlide className="relative">
                     <img
-                        className="object-fill rounded-lg h-auto max-h-[500px] w-full"
+                        className="object-fill rounded h-auto max-h-[500px] w-full"
                         src="http://127.0.0.1:8888/static/assets/images/hero-3.jpg"
                         alt="Slide 3"
                     />

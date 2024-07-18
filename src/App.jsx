@@ -1,14 +1,23 @@
-import { useState } from 'react'
-
 import './App.css'
-import Navbar from './Components/Navbar'
-import Slider from './Components/Slider'
+import Products from './Components/Products'
+import Contact from './Components/Contact'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Components/Home'
+import PLC from './Components/PLC';
 
 function App() {
 
   return (
     <>
-      <Slider/>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+        <Route path='/plc' element={<PLC/>}></Route>
+      </Routes>
+    </Router>
+    
     </>
   )
 }

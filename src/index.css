@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul li {
+    list-style: none;
+}
+:root {
+    --bs-emphasis-color-rgb: 34, 34, 34; 
+}
+.form-check-label {
+    position: relative;
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    /* border: 2px solid #eee; */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-image: linear-gradient(#fff, #f8f8f8);
+    font-weight: normal;
+  }
+  
