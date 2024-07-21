@@ -5,9 +5,11 @@
 ul li {
     list-style: none;
 }
+
 :root {
-    --bs-emphasis-color-rgb: 34, 34, 34; 
+    --bs-emphasis-color-rgb: 34, 34, 34;
 }
+
 .form-check-label {
     position: relative;
     margin: 0;
@@ -18,5 +20,18 @@ ul li {
     cursor: pointer;
     background-image: linear-gradient(#fff, #f8f8f8);
     font-weight: normal;
-  }
-  
+}
+
+#productTableBody th {
+    width: 30%;
+    font-weight: bold;
+    font-size: 14px;
+    color: #4c5157;
+    font-family: Arial, sans-serif;
+}
+#productTableBody td {
+    width: 70%;
+    font-size: 14px;
+    color: #4c5157;
+    font-family: Arial, sans-serif;
+}

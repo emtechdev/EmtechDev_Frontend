@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import Navbar_second from "./Navbar/Navbar_second";
 const Products = () => {
@@ -16,7 +17,7 @@ const Products = () => {
             <div className="w-full sm:w-1/2 lg:w-1/3 px-4 mt-10">
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                     <div className="bg-gray-200 py-3 pl-4">
-                        <a href="automation_system.html" className="text-custom-blue text-[15px] font-bold font-sans">Automation Systems</a>
+                        <a href="/automation-systems" className="text-custom-blue text-[15px] font-bold font-sans">Automation Systems</a>
                     </div>
                     <div className="p-4">
                         <ul className="list-disc ">
