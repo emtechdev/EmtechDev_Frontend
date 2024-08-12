@@ -5,47 +5,26 @@ import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 
 const initialNavigation = [
-  { name: "Home", href: "/", current: false },
   {
     name: "Products",
-    href: "/products",
+    href: "#",
     current: false,
     subItems: [
-      {
-        nameEn: "Automation Systems",
-        href: "/automation-systems",
-        subSubItems: [
-          { nameEn: "Programmable Logic Controller (PLC)", href: "/plc" },
-          { nameEn: "Motion Controllers", href: "/motion-controllers" },
-          { nameEn: "Human Machine Interface (HMI)", href: "/hmi" },
-          { nameEn: "External Input/Output (DI/DO)", href: "/external" },
-        ],
-      },
-      { nameEn: "Motion & Drives", href: "" },
-      { nameEn: "Sensing", href: "" },
-      { nameEn: "Control Components", href: "" },
+      { nameEn: "Add Product", href: "/addProduct" },
     ],
   },
   { name: "Solutions", href: "/solutions", current: false },
-  { name: "Services", href: "/services", current: false },
-  { name: "Contact", href: "/contact", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavbarSecond() {
+export default function Navbar_third() {
   const location = useLocation();
   const [navigation, setNavigation] = useState(initialNavigation);
   const [showSubMenu, setShowSubMenu] = useState(null);
   const [showMobileSubMenu, setShowMobileSubMenu] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    setIsLoggedIn(loggedIn);
-  }, []);
 
   useEffect(() => {
     const updatedNavigation = initialNavigation.map((item) => {
@@ -58,15 +37,11 @@ export default function NavbarSecond() {
       };
     });
 
-    if (isLoggedIn) {
-      updatedNavigation.push({ name: "Admin", href: "/admin", current: location.pathname === "/admin" });
-    }
-
     setNavigation(updatedNavigation);
-  }, [location, isLoggedIn]);
+  }, [location]);
 
   return (
-    <Disclosure as="nav" className="navbar bg-black text-white">
+    <Disclosure as="nav" className="navbar bg-gray-600 text-white">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

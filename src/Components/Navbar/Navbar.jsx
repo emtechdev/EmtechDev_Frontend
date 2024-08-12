@@ -1,19 +1,39 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "./navbar.css";
 import emtechLogo from "../../assets/emtech_logo3.jpg";
+import axios from "axios";
+
 const MainNavbar = () => {
   const [navShow, setNavShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const showNavLogin = () => {
     setNavShow(true);
   };
+
   const hideNavLogin = () => {
     setNavShow(false);
   };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("", {
+        email: email,
+        password: password,
+      });
+      if (response.data.success) {
+        console.log("Login successful");
+      } else {
+        setError("Invalid credentials. Please try again.");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again later.");
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <>
       <nav className="main-nav py-4">
@@ -42,7 +62,13 @@ const MainNavbar = () => {
         <p>
           Welcome to <span>EMTech Dashboard</span>
         </p>
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={(e) => {
+            e.preventDefault(); 
+            handleLogin(); 
+          }}
+        >
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -53,11 +79,14 @@ const MainNavbar = () => {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
-              type="text"
+              type="email"
+              required
               placeholder="Enter Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="mb-6">
+          <div className="">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="password"
@@ -69,12 +98,15 @@ const MainNavbar = () => {
               id="password"
               type="password"
               placeholder="Enter Your Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {error && <p className="text-red-500 text-xs italic">{error}</p>}
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 mx-auto hvr-pulse hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               Login
             </button>
