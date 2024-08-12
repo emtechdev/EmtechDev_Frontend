@@ -12,12 +12,7 @@ const initialNavigation = [
   { name: "Home", href: "/", current: false },
   { name: "Products", href: "/products", current: false ,
     subItems: [
-      { nameEn: "Automation Systems", href: "/automation-systems",
-        subSubItems: [
-          { nameEn: "PLC", href: "/plc" },
-          { nameEn: "HMI", href: "/hmi" },
-        ] 
-      },
+      { nameEn: "Automation Systems", href: "/automation-systems",},
       { nameEn: "Motion & Drives",  },
       { nameEn: "Sensing", },
       { nameEn: "Control Components",  },

@@ -31,10 +31,10 @@ const Slider = () => {
                 <SwiperSlide className="relative">
                     <img
                         className="object-fill  rounded h-auto max-h-[500px] w-full"
-                        src="http://127.0.0.1:8888/static/assets/images/hero-1.jpg"
+                        src="http://emtech-eg.com/static/assets/images/hero-1.jpg"
                         alt="Slide 1"
                     />
-                    <div className="absolute top-52 left-40 p-4 text-white text-center w-3/4">
+                    <div className="absolute top-52 left-40 p-4 text-white text-center sm:w-3/4 w-1/2">
                         <h2 className="text-2xl">We design and deliver
                             complete customized industrial solutions
                             that enable manufacturers to accelerate their digital transformation.</h2>
@@ -48,10 +48,10 @@ const Slider = () => {
 
                     <img
                         className="object-fill  rounded h-auto max-h-[500px] w-full"
-                        src="http://127.0.0.1:8888/static/assets/images/hero-2.jpg"
+                        src="http://emtech-eg.com/static/assets/images/hero-2.jpg"
                         alt="Slide 2"
                     />
-                    <div className="absolute top-52 left-40 p-4 text-white text-center w-3/4">
+                    <div className="absolute top-52 left-40 p-4 text-white text-center sm:w-3/4 w-1/2">
                         <h2 className="text-2xl">We provide wide range of
                             Industrial Robotic Solutions to help improve the performance and increase the efficiency of your production facility.</h2>
                         <button className='bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg'>Find out more</button>
@@ -62,10 +62,10 @@ const Slider = () => {
                 <SwiperSlide className="relative">
                     <img
                         className="object-fill rounded h-auto max-h-[500px] w-full"
-                        src="http://127.0.0.1:8888/static/assets/images/hero-3.jpg"
+                        src="https://emtech-eg.com/static/assets/images/hero-3.jpg"
                         alt="Slide 3"
                     />
-                    <div className="absolute top-52 left-40 p-4 text-white text-center w-3/4">
+                    <div className="absolute top-52 left-40 p-4 text-white text-center sm:w-3/4 w-1/2">
                         <h2 className="text-2xl">We design and deliver
                             customized automated inspection systems that meet the most challenging needs.</h2>
                         <button className='bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg'>Find out more</button>
