@@ -24,18 +24,13 @@ const products = [
         model: 'CP2E-S40DT1-D',
         description: 'CP2E series compact PLC - Standard Type; 24 DI, 16 DO; PNP output; Power supply 24 VDC; 8 kStep Program memory'
     },
-    {
-        brand: 'Omron',
-        image: 'https://emtech-eg.com/static/uploads/CP2E-S60DT1-D.jpg',
-        model: 'CP2E-S40DT1-D',
-        description: 'CP2E series compact PLC - Standard Type; 24 DI, 16 DO; PNP output; Power supply 24 VDC; 8 kStep Program memory'
-    },
+    
 ];
 
 const PLC = () => {
     const [showForm, setShowForm] = useState(false);
-    const [showListView, setShowListView] = useState(true); 
-    const [showCardView, setShowCardView] = useState(false);
+    const [showListView, setShowListView] = useState(false); 
+    const [showCardView, setShowCardView] = useState(true);
     const showCards = () => {
         setShowListView(false);
         setShowCardView(true);
