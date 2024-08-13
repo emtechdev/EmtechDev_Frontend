@@ -10,7 +10,7 @@ function Category() {
         e.preventDefault();
         
         try {
-            const response = await axios.post('', {
+            const response = await axios.post('http://192.168.1.158:8000/category/', {
                 name
             });
             

@@ -9,25 +9,30 @@ import AutomationSystems from './Components/AutomationSystems';
 import Admin from './Components/Admin';
 import Category from './Components/Category';
 import AddProduct from './Components/AddProduct';
+import Solutions from './Components/Solutions';
+import ProductDetail from './Components/ProductDetail';
 
 function App() {
 
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/admin" element={<Admin/>}></Route>
-        <Route path="/addProduct" element={<AddProduct/>}></Route>
-        <Route path="/services" element={<Category/>}></Route>
-        <Route path='/plc' element={<PLC/>}></Route>
-        <Route path='/CP2E-S60DT1-D' element={<CP2E_S60DT1_D/>}></Route>
-        <Route path='/automation-systems' element={<AutomationSystems/>}></Route>
-      </Routes>
-    </Router>
-    
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/addProduct" element={<AddProduct />}></Route>
+          <Route path="/services" element={<Category />}></Route>
+          <Route path="/solutions" element={<Solutions />}></Route>
+          <Route path='/plc/:subcategoryId' element={<PLC />}></Route>
+          <Route path='/CP2E-S60DT1-D' element={<CP2E_S60DT1_D />}></Route>
+          <Route path='/automation system' element={<AutomationSystems />}></Route>
+          <Route path="/plc/:subcategoryId/:productName/:productId" element={<ProductDetail />} />
+
+        </Routes>
+      </Router>
+
     </>
   )
 }
