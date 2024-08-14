@@ -11,8 +11,11 @@ import Category from './Components/Category';
 import AddProduct from './Components/AddProduct';
 import Solutions from './Components/Solutions';
 import ProductDetail from './Components/ProductDetail';
+import EditProduct from './Components/EditProduct';
+import AddPricing from './Components/AddPricing';
 
 function App() {
+
 
   return (
     <>
@@ -25,10 +28,11 @@ function App() {
           <Route path="/addProduct" element={<AddProduct />}></Route>
           <Route path="/services" element={<Category />}></Route>
           <Route path="/solutions" element={<Solutions />}></Route>
-          <Route path='/plc/:subcategoryId' element={<PLC />}></Route>
-          <Route path='/CP2E-S60DT1-D' element={<CP2E_S60DT1_D />}></Route>
+          <Route path='/:subcategory/:subcategoryId' element={<PLC />}></Route>
+          <Route path='/' element={<EditProduct />}></Route>
+          <Route path='/:productName/:productId/add_pricing' element={<AddPricing />}></Route>
           <Route path='/automation system' element={<AutomationSystems />}></Route>
-          <Route path="/plc/:subcategoryId/:productName/:productId" element={<ProductDetail />} />
+          <Route path="/:subcategory/:subcategoryId/:productName/:productId" element={<ProductDetail />} />
 
         </Routes>
       </Router>

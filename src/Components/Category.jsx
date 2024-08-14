@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import MainNavbar from './Navbar/Navbar'
 import NavbarSecond from './Navbar/Navbar_second'
 import axios from 'axios';
+import Navbar_third from './Navbar/Navbar_third';
 
 function Category() {
     const [name, setName] = useState('');
@@ -26,6 +27,7 @@ function Category() {
     <div>
         <MainNavbar/>
         <NavbarSecond/>
+        <Navbar_third/>
         <div className="w-full max-w-xs m-auto mt-5">
                 <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border' onSubmit={handleSubmit}>
                     <h1 className='text-center mb-3'>Add Category</h1> 

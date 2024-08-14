@@ -2,26 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import NavbarSecond from './Navbar/Navbar_second';
 import MainNavbar from './Navbar/Navbar';
+import Navbar_third from './Navbar/Navbar_third';
 
 function Admin() {
     const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
+    const [kind, setKind] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
         try {
-            const response = await axios.post('', {
+            const response = await axios.post('http://192.168.1.158:8000/register/', {
                 username,
-                email,
+                kind,
                 password
             });
             
             if (response.status === 201) {
                 console.log("User added successfully");
                 setUsername('');
-                setEmail('');
+                setKind('');
                 setPassword('');
             }
         } catch (error) {
@@ -33,6 +34,7 @@ function Admin() {
         <div>
             <MainNavbar />
             <NavbarSecond />
+            <Navbar_third/>
             <div className="w-full max-w-xs m-auto mt-5">
                 <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border' onSubmit={handleSubmit}>
                     <h1 className='text-center mb-3'>Add User</h1> 
@@ -51,17 +53,17 @@ function Admin() {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                            Email
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="kind">
+                            Kind
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="adduser-email"
-                            type="email"
-                            placeholder="Email"
+                            id="adduser-kind"
+                            type="text"
+                            placeholder="kind"
                             required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={kind}
+                            onChange={(e) => setKind(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">

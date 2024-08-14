@@ -13,7 +13,8 @@ const initialNavigation = [
       { nameEn: "Add Product", href: "/addProduct" },
     ],
   },
-  { name: "Solutions", href: "/solutions", current: false },
+  { name: "add subcategory", href: "/solutions", current: false },
+  { name: "add category", href: "/services", current: false },
 ];
 
 function classNames(...classes) {
@@ -25,6 +26,7 @@ export default function Navbar_third() {
   const [navigation, setNavigation] = useState(initialNavigation);
   const [showSubMenu, setShowSubMenu] = useState(null);
   const [showMobileSubMenu, setShowMobileSubMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const updatedNavigation = initialNavigation.map((item) => {
@@ -39,6 +41,16 @@ export default function Navbar_third() {
 
     setNavigation(updatedNavigation);
   }, [location]);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    setIsLoggedIn(loggedIn === "true");
+  }, []);
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
 
   return (
     <Disclosure as="nav" className="navbar bg-gray-600 text-white">

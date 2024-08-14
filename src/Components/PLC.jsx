@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrip, faList } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import Navbar_third from "./Navbar/Navbar_third";
 
 const PLC = () => {
     const { subcategoryId } = useParams();
@@ -12,20 +13,26 @@ const PLC = () => {
     const [showListView, setShowListView] = useState(false);
     const [showCardView, setShowCardView] = useState(true);
     const [products, setProducts] = useState([]);
+    const [subcategory, setSubcategory] = useState(null);
+    const baseURL = "http://192.168.1.158:8000"
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchData = async () => {
             try {
-                console.log(`Fetching products for subcategory ID: ${subcategoryId}`);
-                const response = await axios.get(`http://192.168.1.158:8000/subcategory/${subcategoryId}/get_product/`);
-                setProducts(response.data);
+                console.log(`Fetching products and subcategory for ID: ${subcategoryId}`);
+         
+                const subcategoryResponse = await axios.get(`http://192.168.1.158:8000/subcategory/${subcategoryId}/`);
+                setSubcategory(subcategoryResponse.data);
+
+                const productsResponse = await axios.get(`http://192.168.1.158:8000/subcategory/${subcategoryId}/get_product/`);
+                setProducts(productsResponse.data);
             } catch (error) {
-                console.error("There was an error fetching the products!", error);
+                console.error("There was an error fetching the data!", error);
             }
         };
 
         if (subcategoryId) {
-            fetchProducts();
+            fetchData();
         }
     }, [subcategoryId]);
 
@@ -42,10 +49,11 @@ const PLC = () => {
         <>
             <Navbar />
             <Navbar_second />
+            <Navbar_third/>
             <div className="container mx-auto">
                 <h1
                     className="pb-3 mx-4 mt-5 font-open-sans text-[34px]">
-                    Programmable Logic Controllers (PLC)</h1>
+                     {subcategory ? subcategory.name : 'Loading...'}</h1>
                 <button className="py-3 px-5 mx-4 bg-gray-500 text-center text-white rounded-lg" onClick={() => setShowForm(!showForm)}>Filter by</button>
                 {showForm && (
                     <form className="mx-4 mb-4">
@@ -263,10 +271,10 @@ const PLC = () => {
                                     <tr key={index}>
                                         <td className="px-6 py-4 whitespace-nowrap">{product.manfacturer}</td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <img src={product.image || 'default-image.jpg'} alt={product.name} className="h-10 w-10 rounded-full" />
+                                            <img src={`${baseURL}${product.image}`} alt={product.name} className="h-10 w-10 rounded-full" />
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <a href={`${product.name}`} className="text-blue-600 hover:text-blue-900">
+                                            <a href={`/subcategory/${subcategoryId}/${product.name}/${product.id}`} className="text-blue-600 hover:text-blue-900">
                                                 {product.name}
                                             </a>
                                         </td>
@@ -287,9 +295,9 @@ const PLC = () => {
                             {products.map((product, index) => (
                                 <div key={index} className="w-full sm:w-1/3 mt-8">
                                     <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-sm mx-2">
-                                        <img src={product.image || 'default-image.jpg'} alt={product.name} className="h-full w-full" />
+                                        <img src={`${baseURL}${product.image}`} alt={product.name} className="h-full w-full" />
                                         <div className="px-4 pb-4">
-                                            <a href={`/plc/${subcategoryId}/${product.name}/${product.id}`} className="text-blue-600 block pb-3 hover:text-blue-500">
+                                            <a href={`/subcategory/${subcategoryId}/${product.name}/${product.id}`} className="text-blue-600 block pb-3 hover:text-blue-500">
                                                 {product.name}
                                             </a>
                                             <p className="text-gray-700 text-base">{product.description}</p>

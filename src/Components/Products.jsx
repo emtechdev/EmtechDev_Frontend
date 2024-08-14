@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from "./Navbar/Navbar";
 import Navbar_second from "./Navbar/Navbar_second";
 import axios from 'axios';
+import Navbar_third from './Navbar/Navbar_third';
 
 const Products = () => {
     const [categories, setCategories] = useState([]);
@@ -35,6 +36,7 @@ const Products = () => {
         <>
             <Navbar />
             <Navbar_second />
+            <Navbar_third/>
             <div className="container mx-auto">
                 <h1 className="pb-5 mx-4 mt-5 font-open-sans text-[34px]">Products</h1>
             </div>

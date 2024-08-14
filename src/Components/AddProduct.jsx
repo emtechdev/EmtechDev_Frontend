@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function AddProduct() {
     const [name, setName] = useState('');
+    const [image , setImage] = useState(null); // Change this to handle file
     const [description, setDescription] = useState('');
     const [series, setSeries] = useState('');
     const [manfacturer, setManfacturer] = useState('');
@@ -32,23 +33,30 @@ function AddProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formData = new FormData();
+        formData.append('subcategory', selectedSubcategory);
+        formData.append('name', name);
+        formData.append('image', image); // Append image file to FormData
+        formData.append('series', series);
+        formData.append('description', description);
+        formData.append('manfacturer', manfacturer);
+        formData.append('origin', origin);
+        formData.append('eg_stock', eg_stock);
+        formData.append('ae_stock', ae_stock);
+        formData.append('tr_stock', tr_stock);
+
         try {
-            const response = await axios.post('http://192.168.1.158:8000/product/', {
-                subcategory: selectedSubcategory,
-                name,
-                series,
-                description,
-                manfacturer,
-                origin,
-                eg_stock,
-                ae_stock,
-                tr_stock
+            const response = await axios.post('http://192.168.1.158:8000/product/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
 
             if (response.status === 201) {
                 console.log("Product added successfully");
                 setSelectedSubcategory('');
                 setName('');
+                setImage(null); // Reset image file
                 setSeries('');
                 setManfacturer('');
                 setOrigin('');
@@ -61,6 +69,7 @@ function AddProduct() {
             console.error("There was an error adding the product!", error);
         }
     };
+
     return (
         <div>
             <MainNavbar />
@@ -104,8 +113,21 @@ function AddProduct() {
                         />
                     </div>
                     <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                            Image:
+                        </label>
+                        <input
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="image"
+                            type="file"
+                            required
+                            placeholder="image"
+                            onChange={(e) => setImage(e.target.files[0])} // Handle file selection
+                        />
+                    </div>
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="series">
-                            series:
+                            Series:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -119,21 +141,21 @@ function AddProduct() {
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="manfacturer">
-                            manfacturer:
+                            Manufacturer:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="manfacturer"
                             type="text"
                             required
-                            placeholder="manfacturer"
+                            placeholder="manufacturer"
                             value={manfacturer}
                             onChange={(e) => setManfacturer(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="origin">
-                            origin:
+                            Origin:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -147,7 +169,7 @@ function AddProduct() {
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="eg_stock">
-                            eg_stock:
+                            EG Stock:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -160,29 +182,29 @@ function AddProduct() {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor=" ae_stock">
-                            ae_stock:
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ae_stock">
+                            AE Stock:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id=" ae_stock"
+                            id="ae_stock"
                             type="number"
                             required
-                            placeholder=" ae_stock"
+                            placeholder="ae_stock"
                             value={ae_stock}
                             onChange={(e) => setAe_stock(e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor=" tr_stock">
-                            tr_stock:
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tr_stock">
+                            TR Stock:
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id=" tr_stock"
+                            id="tr_stock"
                             type="number"
                             required
-                            placeholder=" tr_stock"
+                            placeholder="tr_stock"
                             value={tr_stock}
                             onChange={(e) => setTr_stock(e.target.value)}
                         />
@@ -194,20 +216,23 @@ function AddProduct() {
                         <textarea
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="description"
-                            type="text"
                             required
                             placeholder="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                        ></textarea>
+                        />
                     </div>
-
-                    <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">ADD</button>
+                    <div className="flex items-center justify-between">
+                        <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Add Product
+                        </button>
+                    </div>
                 </form>
             </div>
-
         </div>
     )
 }
 
-export default AddProduct
+export default AddProduct;

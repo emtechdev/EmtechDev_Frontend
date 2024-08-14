@@ -26,8 +26,6 @@ const initialNavigation = [
       { nameEn: "Control Components", href: "" },
     ],
   },
-  { name: "Solutions", href: "/solutions", current: false },
-  { name: "Services", href: "/services", current: false },
   { name: "Contact", href: "/contact", current: false },
 ];
 
@@ -41,10 +39,13 @@ export default function NavbarSecond() {
   const [showSubMenu, setShowSubMenu] = useState(null);
   const [showMobileSubMenu, setShowMobileSubMenu] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const storedUsername = localStorage.getItem("username");
     setIsLoggedIn(loggedIn);
+    setUsername(storedUsername);
   }, []);
 
   useEffect(() => {
@@ -64,6 +65,9 @@ export default function NavbarSecond() {
 
     setNavigation(updatedNavigation);
   }, [location, isLoggedIn]);
+
+
+
 
   return (
     <Disclosure as="nav" className="navbar bg-black text-white">
