@@ -19,21 +19,20 @@ function AddPricing() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             const response = await axios.post(`http://192.168.1.158:8000/product/${productId}/add_pricing/`, {
-                eg_buy_price,
-                eg_cost,
-                eg_profit,
-                ae_buy_price,
-                ae_cost,
-                ae_profit,
-                tr_buy_price,
-                tr_cost,
-                tr_profit
+                eg_buy_price: parseInt(eg_buy_price),
+                eg_cost: parseInt(eg_cost),
+                eg_profit: parseInt(eg_profit),
+                ae_buy_price: parseInt(ae_buy_price),
+                ae_cost: parseInt(ae_cost),
+                ae_profit: parseInt(ae_profit),
+                tr_buy_price: parseInt(tr_buy_price),
+                tr_cost: parseInt(tr_cost),
+                tr_profit: parseInt(tr_profit)
             });
-
-
+    
             if (response.status === 201) {
                 console.log("Pricing added successfully");
                 setEg_buy_price(0);
@@ -50,21 +49,13 @@ function AddPricing() {
             console.error("There was an error adding the pricing!", error);
         }
     };
+    
 
     return (
         <div>
             <MainNavbar />
             <NavbarSecond />
             <Navbar_third />
-            {/* {
-   
-    "ae_buy_price": 200.5,
-    "ae_cost": 170.0,
-    "ae_profit": 30.5,
-    "tr_buy_price": 180.0,
-    "tr_cost": 150.0,
-    "tr_profit": 30.0
-} */}
             <div className="w-full max-w-xs m-auto mt-5">
                 <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border' onSubmit={handleSubmit}>
                     <h1 className='text-center mb-3'>Add Pricing</h1>
